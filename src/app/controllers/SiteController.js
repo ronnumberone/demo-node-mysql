@@ -1,11 +1,11 @@
-const User = require('../models/User.js');
+const Product = require('../models/Products');
 
 class SiteController {
 
     index(req, res, next) {
-        User.getAllUsers()
-            .then(users => res.render('home', {
-                users: users
+        Product.getAllUsers()
+            .then(products => res.render('home', {
+                products: products
             }));
     }
 

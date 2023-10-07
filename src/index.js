@@ -4,13 +4,17 @@ const { engine } = require('express-handlebars');
 const app = express();
 const port = 4000;
 const db = require('./config/db')
+const fileUpload = require('express-fileupload');
 
 const route =require('./routes')
 
 //connect to db
 // db.connect();
 
+app.use(fileUpload());
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('uploads'))
 
 app.use(express.urlencoded({
   extended: true,

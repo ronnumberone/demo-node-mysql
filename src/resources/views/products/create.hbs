@@ -1,0 +1,22 @@
+<form method="POST" action="/products/store" enctype="multipart/form-data">
+
+    <div class="mb-3">
+        <label for="productName" class="form-label">Tên sách</label>
+        <input type="text" class="form-control" name="productName" placeholder="">
+    </div>
+    <div class="mb-3">
+        <label for="productCost" class="form-label">Giá tiền</label>
+        <input type="text" class="form-control" name="productCost" placeholder="">
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Chọn ảnh</label>
+        <input class="form-control" type="file" name="image" accept="image/*">
+    </div>
+    <div class="mb-3">
+        <label for="productDescription" class="form-label">Mô tả</label>
+        <textarea class="form-control" name="productDescription" rows="3"></textarea>
+    </div>
+
+    <button>Thêm sách</button>
+
+</form>

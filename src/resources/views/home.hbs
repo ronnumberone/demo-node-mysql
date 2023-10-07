@@ -1,5 +1,10 @@
-<ul>
-    {{#each users}}
-    <li>{{this.userName}} (Tuổi: {{this.password}})</li>
-    {{/each}}
-</ul>
+{{#each products}}
+<div class="card" style="width: 18rem;">
+    <img src='{{this.image}}' class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{this.productName}}</h5>
+        <p class="card-text">{{this.productDescription}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+{{/each}}
