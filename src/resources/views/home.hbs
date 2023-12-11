@@ -1,10 +1,119 @@
-{{#each products}}
-<div class="card" style="width: 18rem;">
-    <img src='{{this.image}}' class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{this.productName}}</h5>
-        <p class="card-text">{{this.productDescription}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<!-- Header-->
+{{!-- <header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shop in style</h1>
+            <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+        </div>
+    </div>
+</header> --}}
+
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Khám Phá Kho Tàng Sách Cũ Đa Dạng</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">Hãy trải nghiệm sự thú vị của việc khám phá qua các
+                        trang sách đã lạc hương thời gian. Mua sắm tại cửa hàng của chúng tôi ngay hôm nay và đắm chìm
+                        trong kho tàng đa dạng của kiến thức và giải trí!</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-info btn-lg px-4 me-sm-3" href="#features">Bắt đầu</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="#!">Tìm hiểu thêm</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
+                    src="http://localhost:4000//img//banner.jpg" alt="..." /></div>
+        </div>
+    </div>
+</header>
+
+<!-- Testimonial section-->
+<div id="features" class="py-5 bg-light">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 col-xl-7">
+                <div class="text-center">
+                    <div class="fs-4 mb-4 fst-italic">"Cuốn sách là một tấm cửa mở đến một thế giới mới, nơi bạn có thể
+                        tìm thấy tri thức, phiêu lưu, và những tâm hồn khác nhau, tất cả chỉ bằng một dấu chấm và một
+                        trang giấy."</div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        {{!-- <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                            alt="..." /> --}}
+                        <div class="fw-bold">
+                            Emily Dickinson
+                            {{!-- <span class="fw-bold text-primary mx-1">/</span>
+                            CEO, Pomodoro --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-{{/each}}
+
+<div class="row gx-5 justify-content-center mt-5 pt-2">
+    <div class="col-lg-8 col-xl-6">
+        <div class="text-center">
+            <h2 class="fw-bolder">Sản phẩm</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container col-xl-6 mt-5">
+    <div class="input-group">
+        <label for="search" class="form-label me-3 my-auto fs-5">Tìm kiếm sản phẩm</label>
+        <input id="inputSearch" class="form-control me-2" type="search" placeholder="Nhập tên sản phẩm"
+            aria-label="Search">
+        <button id="btnSearch" class="btn btn-outline-success" type="search">Tìm kiếm</button>
+    </div>
+</div>
+
+<section id="products" class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {{#each products}}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{this.image}}" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h4 class="fw-bolder mb-3">{{this.productName}}</h4>
+                            <h6 class="fw-normal mb-3">{{this.userName}}</h6>
+                            <!-- Product price-->
+                            <p class="text-warning fs-5">{{formatCurrency this.productCost}}đ</p>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="/products/{{this.productId}}">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<script>
+    let inputSearch = document.querySelector('#inputSearch');
+    let btnSearch = document.querySelector('#btnSearch');
+    let linkSearch = document.querySelector('#linkSearch');
+
+    btnSearch.onclick = function () {
+    let inputValue = inputSearch.value.trim();
+        if (inputValue === "") {
+            event.preventDefault();
+            alert("Vui lòng nhập tên sản phẩm trước khi tìm kiếm");
+        }
+        else {
+            const searchUrl = "/search?keyword=" + inputValue;
+            window.location.href = searchUrl;
+        }
+    };
+</script>

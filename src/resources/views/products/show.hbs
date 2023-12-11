@@ -1,0 +1,153 @@
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="mb-5 mb-md-0" style="width: 500px" src="{{product.image}}" alt="..." />
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">SKU: BST-498</div>
+                <h1 class="display-5 fw-bolder">{{product.productName}}</h1>
+                <div class="fs-4 mb-3 mt-3"><span class="fw-light fs-5">Bán bởi:</span> {{product.userName}}</div>
+                <div class="fs-5 mt-4 mb-4">
+                    {{!-- <span class="text-decoration-line-through">$45.00</span> --}}
+                    <span class="text-warning fs-4">{{formatCurrency product.productCost}}đ</span>
+                </div>
+                <p class="lead mb-5">Mô tả: {{product.productDescription}}</p>
+                <div class="d-flex">
+                    <form action="/carts/add/{{product.productId}}" method="POST">
+                        <input class="form-control text-center me-3" id="inputQuantity" name="quantity" min="1"
+                            type="number" value="1" style="max-width: 5rem" />
+                        {{#if loggedIn}}
+                        {{#if isAdmin}}
+                        <button class="btn btn-outline-dark flex-shrink-0 mt-3 disabled" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                        {{else}}
+                        <button class="btn btn-outline-dark flex-shrink-0 mt-3" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                        {{/if}}
+                        {{else}}
+                        <p class="text-start mb-0 mt-3" style="color: rgb(249, 93, 93);">Đăng nhập để thêm vào giỏ hàng.</p>
+                        <button class="btn btn-outline-dark flex-shrink-0 mt-3 disabled" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                        {{/if}}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Sản phẩm nổi bật</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://isachhay.net/wp-content/uploads/2018/09/toi-tu-hoc-sach-hay-tiki.jpg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Tôi tự học</h5>
+                            <!-- Product price-->
+                            68,000đ
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto disabled" href="#">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://static.oreka.vn/800-800_d98750de-0157-47b1-a945-3c1f1b5ba31a" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Bạn đắt giá bao nhiêu</h5>
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div>
+                            <!-- Product price-->
+                            <span class="text-muted text-decoration-line-through">120,000đ</span>
+                            90,000đ
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto disabled" href="#">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
+                    </div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://static.oreka.vn/800-800_4bbe8b3b-472f-4bd2-ace4-480700aa74ef" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Chuyến bay cuộc đời</h5>
+                            <!-- Product price-->
+                            <span class="text-muted text-decoration-line-through">100,000đ</span>
+                            60,000đ
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto disabled" href="#">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://static.oreka.vn/800-800_8cad1775-7d26-4079-8ca4-f3c79d672908" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Tuổi thơ dữ dội</h5>
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div>
+                            <!-- Product price-->
+                            65,000đ
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto disabled" href="#">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

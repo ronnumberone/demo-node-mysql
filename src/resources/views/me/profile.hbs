@@ -1,0 +1,111 @@
+<!-- Header - set the background image for the header in the line below-->
+<header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4"
+            src="https://www.kaericature.com/wp-content/uploads/2023/05/charlie_chaplin_avatar2.jpg"
+            style="width: 150px;height: 150px;" alt="..." />
+        <h1 class="text-white fs-3 fw-bolder">{{userName}}</h1>
+        <p class="text-white-50 mb-0 mt-3">Trang cá nhân</p>
+    </div>
+</header>
+
+<div class="row gx-5 mt-5 pt-2">
+    <div class="col-lg-8 col-xl-4">
+        <div class="text-center">
+            <h2 class="fw-normal">Sách của tôi:</h2>
+        </div>
+    </div>
+</div>
+<!-- Content section-->
+{{!-- <section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>Full Width Backgrounds</h2>
+                <p class="lead">A single, lightweight helper class allows you to add engaging, full width background
+                    images to sections of your page.</p>
+                <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting
+                    here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in
+                    the universe.</p>
+            </div>
+        </div>
+    </div>
+</section> --}}
+
+<table class="table container table-striped table-hover my-5 py-5">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each products}}
+        <tr>
+            <td>{{this.productId}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{formatCurrency this.productCost}} đ</td>
+            <td>
+                <a href="/products/{{this.productId}}/edit" class="btn btn-outline-secondary ">Sửa</a>
+                <a href="" class="btn btn-danger ms-3" data-bs-id="{{this.productId}}" data-bs-toggle="modal"
+                    data-bs-target="#delete-course-modal">Xóa</a>
+            </td>
+        </tr>
+         {{else}}
+            <tr>
+                <td colspan="5" class="text-center">
+                    Bạn chưa thêm sách nào.
+                    <a href="/products/create">Thêm sách</a>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- Image element - set the background image for the header in the line below-->
+<div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
+    <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
+    <div style="height: 20rem"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete-course-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa sách</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sách này?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa bỏ</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-course-form" method="POST"></form>
+
+
+<script>
+    var productId;
+    var deleteForm = document.forms['delete-course-form'];
+
+    // When dialog confirm click
+    var exampleModal = document.getElementById('delete-course-modal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        productId = button.getAttribute('data-bs-id');
+    })
+
+    let btnDeleteCourse = document.getElementById('btn-delete-course');
+    btnDeleteCourse.onclick = function () {
+        deleteForm.action = '/products/' + productId + '?_method=DELETE';
+        deleteForm.submit();
+    }
+</script>

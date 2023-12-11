@@ -1,0 +1,89 @@
+<div class="row gx-5 mt-5 pt-5">
+    <div class="col-lg-8 col-xl-4">
+        <div class="text-center">
+            <h2 class="fw-normal">Danh sách sản phẩm:</h2>
+        </div>
+    </div>
+</div>
+
+<p class="text-start text-muted container mt-5" style="font-size: 1.2rem;">
+    Số lượng sản phẩm: <span class="" style="font-size: 1.2rem; color:rgb(255, 113, 4)">{{numberOfProducts.numberOfProducts}}</span>
+</p>
+
+<table class="table container table-striped table-hover my-5 py-5">
+    <thead>
+        <tr>
+            <th scope="col">Mã sản phẩm</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Giá tiền</th>
+            <th scope="col">Tên người bán</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each products}}
+        <tr>
+            <td>{{this.productId}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{formatCurrency this.productCost}}đ</td>
+            <td>{{this.userName}}</td>
+            <td>
+                <a href="" class="btn btn-danger ms-3" data-bs-id="{{this.productId}}" data-bs-toggle="modal"
+                    data-bs-target="#delete-course-modal">Xóa</a>
+            </td>
+        </tr>
+         {{else}}
+            <tr>
+                <td colspan="5" class="text-center">
+                    Chưa có sản phẩm nào.
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- Image element - set the background image for the header in the line below-->
+<div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
+    <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
+    <div style="height: 20rem"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="delete-course-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm này?
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-product" type="button" class="btn btn-danger">Xóa bỏ</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-product-form" method="POST"></form>
+
+
+<script>
+    var productId;
+    var deleteForm = document.forms['delete-product-form'];
+
+    // When dialog confirm click
+    var exampleModal = document.getElementById('delete-course-modal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        productId = button.getAttribute('data-bs-id');
+    })
+
+    let btnDeleteProduct = document.getElementById('btn-delete-product');
+    btnDeleteProduct.onclick = function () {
+        deleteForm.action = '/' + productId;
+        deleteForm.submit();
+    }
+</script>

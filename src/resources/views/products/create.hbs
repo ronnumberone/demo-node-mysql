@@ -1,12 +1,22 @@
-<form method="POST" action="/products/store" enctype="multipart/form-data">
+<form class="m-5 p-5" method="POST" action="/products/store" enctype="multipart/form-data">
 
+    <div class="row gx-5 mt-5 pt-2 mb-4">
+        <div class="col-lg-8 col-xl-2">
+            <div class="text-center">
+                <h2 class="fw-normal">Thêm sách</h2>
+            </div>
+        </div>
+    </div>
     <div class="mb-3">
         <label for="productName" class="form-label">Tên sách</label>
         <input type="text" class="form-control" name="productName" placeholder="">
     </div>
     <div class="mb-3">
         <label for="productCost" class="form-label">Giá tiền</label>
-        <input type="text" class="form-control" name="productCost" placeholder="">
+        <div class="input-group">
+            <input type="text" class="form-control" name="productCost" placeholder="">
+            <span class="input-group-text">VNĐ</span>
+        </div>
     </div>
     <div class="mb-3">
         <label for="image" class="form-label">Chọn ảnh</label>
@@ -17,6 +27,6 @@
         <textarea class="form-control" name="productDescription" rows="3"></textarea>
     </div>
 
-    <button>Thêm sách</button>
+    <button class="btn btn-outline-primary">Thêm sách</button>
 
 </form>

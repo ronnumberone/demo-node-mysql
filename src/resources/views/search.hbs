@@ -1,0 +1,71 @@
+<div class="row gx-5 justify-content-center mt-5 pt-5">
+    <div class="col-lg-8 col-xl-6">
+        <div class="text-center">
+            <h2 class="fw-bolder">Sản phẩm</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container col-xl-6 mt-5">
+    <div class="input-group">
+        <label for="search" class="form-label me-3 my-auto fs-5">Tìm kiếm sản phẩm</label>
+        <input id="inputSearch" class="form-control me-2" type="search" placeholder="Nhập tên sản phẩm"
+            aria-label="Search">
+        <button id="btnSearch" class="btn btn-outline-success" type="search">Tìm kiếm</button>
+    </div>
+</div>
+
+<p class="text-start text-muted container mt-5" style="font-size: 1.2rem;">
+    <i class="fa-brands fa-ioxhost"></i>
+    Kết quả tìm kiếm cho từ khoá '<span class="" style="font-size: 1.2rem; color:rgb(254, 32, 32)">{{keyword}}</span>'
+</p>
+
+<section id="products" class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {{#each products}}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{this.image}}" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h4 class="fw-bolder mb-3">{{this.productName}}</h4>
+                            <h6 class="fw-normal mb-3">{{this.userName}}</h6>
+                            <!-- Product price-->
+                            <p class="text-warning fs-5">{{this.productCost}}đ</p>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                href="/products/{{this.productId}}">Chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <p class="text-center">Không có sản phẩm nào phù hợp với tìm kiếm của bạn.</p>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<script>
+    let inputSearch = document.querySelector('#inputSearch');
+    let btnSearch = document.querySelector('#btnSearch');
+    let linkSearch = document.querySelector('#linkSearch');
+
+    btnSearch.onclick = function () {
+        let inputValue = inputSearch.value.trim();
+        if (inputValue === "") {
+            event.preventDefault();
+            alert("Vui lòng nhập tên sản phẩm trước khi tìm kiếm");
+        }
+        else {
+            const searchUrl = "/search?keyword=" + inputValue;
+            window.location.href = searchUrl;
+        }
+    };
+</script>
